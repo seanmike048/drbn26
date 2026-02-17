@@ -1,0 +1,7 @@
+{
+  "name": "Dr. Beauté Noire",
+  "description": "Your beauty partner - Daily skincare coaching for melanin-rich skin.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

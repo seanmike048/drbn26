@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core */
+  --bg-primary: #F6F4E8;          /* Cream canvas — ALL screens */
+  --bg-surface: #FFFFFF;           /* Cards, inputs, modals */
+  --bg-muted: rgba(229,223,208,0.5); /* Segmented controls, tab list */
+  --bg-product-card: rgba(229,223,208,0.3); /* Recommended product cards */
+
+  /* Gold palette */
+  --gold-primary: #9B7542;        /* CTAs, selected states, progress fill, step numbers */
+  --gold-accent: #B08D54;         /* "Docteur" text, section labels, disabled CTA bg */
+  --gold-10: rgba(155,117,66,0.1); /* Icon backgrounds, selected card tint */
+  --gold-5: rgba(155,117,66,0.05); /* Selected radio card bg */
+  --gold-20: rgba(155,117,66,0.2); /* Progress track, borders */
+  --gold-30: rgba(155,117,66,0.3); /* Photo card border */
+
+  /* Text */
+  --text-primary: #1F1A14;        /* Headings, labels, titles */
+  --text-secondary: #5A5245;      /* Body, descriptions, placeholders */
+  --text-white: #FFFFFF;           /* On gold buttons */
+
+  /* Borders */
+  --border-default: #D9D1BC;      /* Input borders, card borders, dividers */
+  --border-selected: #9B7542;     /* Focus rings, selected cards */
+  --border-divider: rgba(217,209,188,0.4); /* Routine step dividers */
+  --border-light: rgba(217,209,188,0.3);   /* Product card borders */
+
+  /* Shadows */
+  --shadow-cta: 0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-bar: 0px -4px 10px rgba(184,147,94,0.2);
+  --shadow-tab: 0px 1px 3px rgba(0,0,0,0.1), 0px 1px 2px -1px rgba(0,0,0,0.1);
+  --shadow-focus: 0px 0px 0px 2.9px rgba(155,117,66,0.48);
+
+  /* Radii */
+  --radius-input: 16px;           
+  --radius-button: 10px;          
+  --radius-cta: 16px;             
+  --radius-product-card: 16px;    
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Lato', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-display {
+    font-family: 'Playfair Display SC', serif;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
