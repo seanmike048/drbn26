@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { TodayPlan, UserProfile } from '../types';
 import { Sun, Moon, Calendar } from 'lucide-react';
+import CrossLogo from '../components/ui/CrossLogo';
 
 interface Props {
     plan: TodayPlan;
     user: UserProfile;
     lang: string;
+    onHome: () => void;
 }
 
-const TodayPlanPage: React.FC<Props> = ({ plan, user, lang }) => {
+const TodayPlanPage: React.FC<Props> = ({ plan, user, lang, onHome }) => {
     const [tab, setTab] = useState<'am' | 'pm' | 'weekly'>('am');
 
     const renderRoutine = (steps: typeof plan.morning) => (
@@ -23,7 +25,7 @@ const TodayPlanPage: React.FC<Props> = ({ plan, user, lang }) => {
                             <h4 className="font-body font-medium text-lg text-text-primary mb-1">{step.title}</h4>
                             <span className="text-xs font-bold uppercase tracking-widest text-gold-accent mb-2 block">{step.productCategory} • {step.timing}</span>
                             <p className="text-text-secondary font-light leading-relaxed mb-4">{step.instructions}</p>
-                            
+
                             {step.recommendedProduct && (
                                 <div className="bg-bg-product-card p-4 rounded-card border border-border-light">
                                     <span className="text-xs font-bold uppercase text-gold-primary mb-1 block">Recommended</span>
@@ -43,7 +45,12 @@ const TodayPlanPage: React.FC<Props> = ({ plan, user, lang }) => {
         <div className="min-h-screen bg-bg-primary">
             {/* Top Bar */}
             <div className="sticky top-0 bg-bg-primary/95 backdrop-blur z-20 px-5 py-4 border-b border-border-default flex justify-between items-center">
-                <h1 className="font-display text-xl text-text-primary">Today</h1>
+                <div className="flex items-center gap-3">
+                    <button onClick={onHome} className="p-1 hover:opacity-70 transition-opacity">
+                        <CrossLogo size={28} color="#9B7542" />
+                    </button>
+                    <h1 className="font-display text-xl text-text-primary">Today</h1>
+                </div>
                 <div className="text-xs font-bold uppercase tracking-widest text-text-secondary">
                     {new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { weekday: 'short', day: 'numeric' })}
                 </div>
@@ -60,20 +67,20 @@ const TodayPlanPage: React.FC<Props> = ({ plan, user, lang }) => {
 
                 {/* Tabs */}
                 <div className="bg-bg-muted p-1 rounded-xl flex gap-1 mb-8">
-                    <button 
-                        onClick={() => setTab('am')} 
+                    <button
+                        onClick={() => setTab('am')}
                         className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-2 transition-all ${tab === 'am' ? 'bg-bg-surface shadow-sm text-text-primary' : 'text-text-secondary'}`}
                     >
                         <Sun size={16} /> <span className="text-xs font-bold uppercase">AM</span>
                     </button>
-                    <button 
-                        onClick={() => setTab('pm')} 
+                    <button
+                        onClick={() => setTab('pm')}
                         className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-2 transition-all ${tab === 'pm' ? 'bg-bg-surface shadow-sm text-text-primary' : 'text-text-secondary'}`}
                     >
                         <Moon size={16} /> <span className="text-xs font-bold uppercase">PM</span>
                     </button>
-                    <button 
-                        onClick={() => setTab('weekly')} 
+                    <button
+                        onClick={() => setTab('weekly')}
                         className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-2 transition-all ${tab === 'weekly' ? 'bg-bg-surface shadow-sm text-text-primary' : 'text-text-secondary'}`}
                     >
                         <Calendar size={16} /> <span className="text-xs font-bold uppercase">Week</span>
