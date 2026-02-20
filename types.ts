@@ -6,20 +6,45 @@
 import React from 'react';
 
 export type Language = 'en' | 'fr';
+export type Tier = 'guest' | 'free' | 'premium';
 
+// 10-question onboarding profile
 export interface UserProfile {
-    name?: string;
+    // Q1: Age (18+ gate)
     age?: number;
+    // Q2: Name
+    name?: string;
+    // Q3: Country + Climate
+    country?: string;
+    climate?: 'tropical' | 'dry' | 'temperate' | 'continental' | 'polar';
+    // Q4: Sun exposure
+    sunExposure?: 'low' | 'moderate' | 'high';
+    // Q5: Skin type
+    skinType?: string;
+    // Q6: Sensitivity
+    sensitivity?: 'low' | 'medium' | 'high';
+    // Q7: Goals (multi-select, max 3)
+    goals?: string[];
+    // Q8: Breakouts / PIH / raised scars
+    breakouts?: 'never' | 'occasional' | 'frequent';
+    pihConcern?: boolean;
+    raisedScars?: boolean;
+    // Q9: Hair removal method
+    hairRemoval?: 'none' | 'shaving' | 'waxing' | 'laser' | 'other';
+    ingrownConcern?: boolean;
+    // Q10: Preferences & Budget
+    fragranceFree?: boolean;
+    budget?: 'budget' | 'standard' | 'premium';
+    knownActives?: string[];
+
+    // Legacy fields
     gender?: string;
     location?: string;
-    climate?: string;
-    skinType?: string;
-    sensitivity?: 'low' | 'medium' | 'high';
     shaving?: string;
     skinHistory?: string;
-    goals?: string[];
     currentRoutine?: string;
-    budget?: 'budget' | 'standard' | 'premium';
+
+    // Photos
     skinImages?: {
         front?: string;
         left?: string;
@@ -83,29 +108,4 @@ export interface JournalArticle {
   content: React.ReactNode | string;
   date: string;
   image: string;
-}
-
-export interface AnalysisData {
-    meta: {
-        title: string;
-        artist: string;
-        year: string;
-        movement: string;
-    };
-    technical_dashboard: {
-        tags: string[];
-        color_palette_hex: string[];
-        influences: string[];
-        similar_artists: string[];
-    };
-    narrative: {
-        the_scene: string;
-        the_context: string;
-        the_soul: string;
-    }
-}
-
-export interface AnalysisResult {
-    imageBase64: string;
-    data: AnalysisData;
 }
