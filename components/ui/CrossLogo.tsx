@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface CrossLogoProps {
   size?: number;
@@ -7,6 +7,8 @@ interface CrossLogoProps {
 }
 
 const CrossLogo: React.FC<CrossLogoProps> = ({ size = 64, className = '', onClick }) => {
+  const clipId = useId();
+
   return (
     <svg
       width={size}
@@ -20,7 +22,7 @@ const CrossLogo: React.FC<CrossLogoProps> = ({ size = 64, className = '', onClic
       style={onClick ? { cursor: 'pointer' } : undefined}
     >
       <defs>
-        <clipPath id="crossClip">
+        <clipPath id={clipId}>
           {/* Vertical bar */}
           <rect x="62" y="4" width="76" height="192" rx="6" />
           {/* Horizontal bar */}
@@ -29,7 +31,7 @@ const CrossLogo: React.FC<CrossLogoProps> = ({ size = 64, className = '', onClic
       </defs>
 
       {/* Cross shape — dark background with gold border */}
-      <g clipPath="url(#crossClip)">
+      <g clipPath={`url(#${clipId})`}>
         {/* Dark fill */}
         <rect x="0" y="0" width="200" height="200" fill="#1F1A14" />
 
