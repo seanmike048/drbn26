@@ -9,80 +9,250 @@ export const BRAND_NAME = "Dr. Beauté Noire";
 
 export const TRANSLATIONS = {
     en: {
+        // Landing
         tagline: "Your beauty partner",
-        start: "Start Your Routine",
-        continueGuest: "Continue as Guest",
-        createAccount: "Create Account",
+        subtitle: "Daily skincare coaching for melanin-rich skin",
         signIn: "Sign In",
+        signUp: "Sign Up",
+        continueGuest: "Continue as Guest",
+        disclaimer: "Dr. Beauté Noire provides cosmetic coaching based on appearance. This is not a medical diagnosis. Consult a dermatologist for skin conditions.",
+        appName: "Dr. Beauté Noire",
+
+        // Age gate
         ageGateTitle: "Are you 18 or older?",
-        yes: "Yes",
+        ageGateSubtitle: "This app is designed for adults only.",
+        yes: "Yes, I'm 18+",
         no: "No",
-        profileTitle: "Tell us about yourself",
-        skinTitle: "Your Skin Profile",
-        goalsTitle: "What are your goals?",
-        habitsTitle: "Habits & Budget",
-        generating: "Designing your routine...",
+        ageGateBlocked: "Sorry, this app is for adults 18 and older.",
+
+        // Questionnaire steps
+        q1Title: "How old are you?",
+        q2Title: "What's your name?",
+        q3Title: "Where do you live?",
+        q4Title: "Sun exposure",
+        q4Subtitle: "How much sun do you get daily?",
+        q5Title: "Your skin type",
+        q6Title: "Skin sensitivity",
+        q7Title: "Your goals",
+        q7Subtitle: "Select up to 3",
+        q8Title: "Skin concerns",
+        q9Title: "Hair removal",
+        q10Title: "Preferences & Budget",
+
+        // Q3 options
+        climateTropical: "Tropical / Humid",
+        climateDry: "Dry / Arid",
+        climateTemperate: "Temperate",
+        climateContinental: "Continental",
+        climatePolar: "Cold / Polar",
+
+        // Q4 options
+        sunLow: "Low (mostly indoors)",
+        sunModerate: "Moderate (some outdoor time)",
+        sunHigh: "High (outdoors daily)",
+
+        // Q5 options
+        skinDry: "Dry",
+        skinOily: "Oily",
+        skinCombo: "Combination",
+        skinNormal: "Normal",
+
+        // Q6 options
+        sensitivityLow: "Low — rarely reacts",
+        sensitivityMedium: "Medium — sometimes reacts",
+        sensitivityHigh: "High — reacts easily",
+
+        // Q7 options
+        goalHydration: "Hydration",
+        goalAcne: "Acne Control",
+        goalEvenTone: "Even Tone",
+        goalAntiAging: "Anti-Aging",
+        goalTexture: "Smooth Texture",
+        goalBrightness: "Brightness / Glow",
+
+        // Q8 options
+        breakoutsNever: "Never / Rarely",
+        breakoutsOccasional: "Occasional",
+        breakoutsFrequent: "Frequent",
+        pihConcern: "I have dark spots after breakouts (PIH)",
+        raisedScars: "I have raised or keloid scars",
+
+        // Q9 options
+        hairNone: "None",
+        hairShaving: "Shaving",
+        hairWaxing: "Waxing",
+        hairLaser: "Laser",
+        hairOther: "Other",
+        ingrownConcern: "I get ingrown hairs / razor bumps",
+
+        // Q10 options
+        fragranceFree: "I prefer fragrance-free products",
+        budgetLabel: "Monthly skincare budget",
+
+        // Photo analysis
+        photoTitle: "Photo Analysis",
+        photoSubtitleFree: "Take a front photo for a basic AI skin analysis.",
+        photoSubtitlePremium: "Take 3 photos for a complete AI analysis: Front, Left, Right.",
+        startCapture: "Start Capture",
+        selectPhotos: "Select Photos",
+        takePhotos: "Take Photos",
+        skipPhotos: "Continue without photos",
+        confirmPhotos: "Confirm & Continue",
+        retakePhotos: "Retake photos",
+        analyzeYourSkin: "Analyze Your Skin",
+        upsellAI: "Sign up free for AI-powered skin analysis",
+
+        // Navigation
         today: "Today's Plan",
         evolution: "Evolution",
         products: "Products",
+        back: "Back",
+        next: "Next",
+        generatePlan: "Generate Plan",
+        following: "Next",
+
+        // Products page
+        yourProducts: "Your Products",
+        recommendedForYou: "Recommended for you",
+        fromYourRoutine: "From your routine",
+        keyIngredients: "Key ingredients",
+        whyThisProduct: "Why this product",
+        noProducts: "Complete your routine to see personalized product recommendations.",
+
+        // Premium
         locked: "Premium Feature",
         upgrade: "Upgrade to Unlock",
-        snapshot: "Snapshot",
+        premiumBadge: "Premium",
+
+        // Misc
         am: "Morning",
         pm: "Evening",
         weekly: "Weekly",
-        savePlan: "Save my plan",
-        back: "Back",
-        next: "Next",
-        disclaimer: "Dr. Beauté Noire provides cosmetic coaching based on appearance. This is not a medical diagnosis. Consult a dermatologist for skin conditions.",
-        appName: "Dr. Beauté Noire",
-        upload: "Upload Photo",
-        dragDrop: "Drag & drop or click to upload",
-        camera: "Camera",
-        palette: "Color Palette",
-        influences: "Influences",
-        similar: "Similar Artists",
-        scene: "The Scene",
-        context: "The Context",
-        soul: "The Soul",
+        generating: "Designing your routine...",
+        analyzingAI: "Analyzing your unique skin profile...",
     },
     fr: {
+        // Landing
         tagline: "Votre partenaire beauté",
-        start: "Commencer votre routine",
-        continueGuest: "Continuer en invité",
-        createAccount: "Créer un compte",
+        subtitle: "Coaching skincare quotidien pour peaux riches en mélanine",
         signIn: "Se connecter",
+        signUp: "Créer un compte",
+        continueGuest: "Continuer en invité",
+        disclaimer: "Dr. Beauté Noire fournit un coaching cosmétique basé sur l'apparence. Ce n'est pas un diagnostic médical. Consultez un dermatologue pour toute condition cutanée.",
+        appName: "Dr. Beauté Noire",
+
+        // Age gate
         ageGateTitle: "Avez-vous 18 ans ou plus ?",
-        yes: "Oui",
+        ageGateSubtitle: "Cette application est réservée aux adultes.",
+        yes: "Oui, j'ai 18 ans+",
         no: "Non",
-        profileTitle: "Parlez-nous de vous",
-        skinTitle: "Votre profil de peau",
-        goalsTitle: "Quels sont vos objectifs ?",
-        habitsTitle: "Habitudes et Budget",
-        generating: "Conception de votre routine...",
+        ageGateBlocked: "Désolé, cette application est réservée aux adultes de 18 ans et plus.",
+
+        // Questionnaire steps
+        q1Title: "Quel âge avez-vous ?",
+        q2Title: "Comment vous appelez-vous ?",
+        q3Title: "Où habitez-vous ?",
+        q4Title: "Exposition au soleil",
+        q4Subtitle: "Combien de soleil recevez-vous par jour ?",
+        q5Title: "Votre type de peau",
+        q6Title: "Sensibilité de la peau",
+        q7Title: "Vos objectifs",
+        q7Subtitle: "Sélectionnez jusqu'à 3",
+        q8Title: "Problèmes de peau",
+        q9Title: "Épilation",
+        q10Title: "Préférences & Budget",
+
+        // Q3 options
+        climateTropical: "Tropical / Humide",
+        climateDry: "Sec / Aride",
+        climateTemperate: "Tempéré",
+        climateContinental: "Continental",
+        climatePolar: "Froid / Polaire",
+
+        // Q4 options
+        sunLow: "Faible (surtout en intérieur)",
+        sunModerate: "Modéré (un peu dehors)",
+        sunHigh: "Élevé (dehors tous les jours)",
+
+        // Q5 options
+        skinDry: "Sèche",
+        skinOily: "Grasse",
+        skinCombo: "Mixte",
+        skinNormal: "Normale",
+
+        // Q6 options
+        sensitivityLow: "Faible — réagit rarement",
+        sensitivityMedium: "Moyenne — réagit parfois",
+        sensitivityHigh: "Élevée — réagit facilement",
+
+        // Q7 options
+        goalHydration: "Hydratation",
+        goalAcne: "Contrôle de l'acné",
+        goalEvenTone: "Teint uniforme",
+        goalAntiAging: "Anti-âge",
+        goalTexture: "Texture lisse",
+        goalBrightness: "Éclat / Luminosité",
+
+        // Q8 options
+        breakoutsNever: "Jamais / Rarement",
+        breakoutsOccasional: "Occasionnel",
+        breakoutsFrequent: "Fréquent",
+        pihConcern: "J'ai des taches sombres après les boutons (PIH)",
+        raisedScars: "J'ai des cicatrices en relief ou chéloïdes",
+
+        // Q9 options
+        hairNone: "Aucune",
+        hairShaving: "Rasage",
+        hairWaxing: "Épilation à la cire",
+        hairLaser: "Laser",
+        hairOther: "Autre",
+        ingrownConcern: "J'ai des poils incarnés / boutons de rasage",
+
+        // Q10 options
+        fragranceFree: "Je préfère les produits sans parfum",
+        budgetLabel: "Budget skincare mensuel",
+
+        // Photo analysis
+        photoTitle: "Analyse Photo",
+        photoSubtitleFree: "Prenez une photo de face pour une analyse IA basique.",
+        photoSubtitlePremium: "Prenez 3 photos pour une analyse IA complète : Face, Gauche, Droit.",
+        startCapture: "Commencer la capture",
+        selectPhotos: "Sélectionner des photos",
+        takePhotos: "Prendre des photos",
+        skipPhotos: "Continuer sans photos",
+        confirmPhotos: "Valider et continuer",
+        retakePhotos: "Reprendre les photos",
+        analyzeYourSkin: "Analysez votre peau",
+        upsellAI: "Inscrivez-vous gratuitement pour l'analyse IA",
+
+        // Navigation
         today: "Plan du jour",
         evolution: "Évolution",
         products: "Produits",
+        back: "Retour",
+        next: "Suivant",
+        generatePlan: "Générer mon plan",
+        following: "Suivant",
+
+        // Products page
+        yourProducts: "Vos Produits",
+        recommendedForYou: "Recommandés pour vous",
+        fromYourRoutine: "De votre routine",
+        keyIngredients: "Ingrédients clés",
+        whyThisProduct: "Pourquoi ce produit",
+        noProducts: "Complétez votre routine pour voir des recommandations personnalisées.",
+
+        // Premium
         locked: "Fonctionnalité Premium",
         upgrade: "Mettre à niveau",
-        snapshot: "Aperçu",
+        premiumBadge: "Premium",
+
+        // Misc
         am: "Matin",
         pm: "Soir",
         weekly: "Hebdo",
-        savePlan: "Sauvegarder mon plan",
-        back: "Retour",
-        next: "Suivant",
-        disclaimer: "Dr. Beauté Noire fournit un coaching cosmétique basé sur l'apparence. Ce n'est pas un diagnostic médical. Consultez un dermatologue pour toute condition cutanée.",
-        appName: "Dr. Beauté Noire",
-        upload: "Télécharger une photo",
-        dragDrop: "Glisser-déposer ou cliquer",
-        camera: "Appareil photo",
-        palette: "Palette de couleurs",
-        influences: "Influences",
-        similar: "Artistes similaires",
-        scene: "La Scène",
-        context: "Le Contexte",
-        soul: "L'Âme",
+        generating: "Conception de votre routine...",
+        analyzingAI: "Analyse de votre profil de peau...",
     }
 };
 
