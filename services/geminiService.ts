@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import { GoogleGenAI, Type, Chat, GenerateContentResponse } from "@google/genai";
+import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 import { UserProfile, TodayPlan } from "../types";
 
 // Fallback Rules Engine (Mocked for Guest Tier)
@@ -76,129 +76,33 @@ export const generateRulesBasedPlan = (profile: UserProfile): TodayPlan => {
     };
 };
 
-// Premium AI Analysis
+// Premium AI Analysis — calls the server endpoint /api/analyzeSkin
 export const analyzeSkin = async (images: { front?: string, left?: string, right?: string }, profile: UserProfile): Promise<TodayPlan> => {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) throw new Error("API Key missing");
-
-  const ai = new GoogleGenAI({ apiKey });
-
-  const parts: any[] = [];
-  const clean = (b64: string) => b64.replace(/^data:image\/(png|jpg|jpeg|webp);base64,/, "");
-
-  if (images.front) {
-      parts.push({ inlineData: { mimeType: 'image/jpeg', data: clean(images.front) } });
-      parts.push({ text: "Image 1: Front Face View" });
-  }
-  if (images.left) {
-      parts.push({ inlineData: { mimeType: 'image/jpeg', data: clean(images.left) } });
-      parts.push({ text: "Image 2: Left Profile View" });
-  }
-  if (images.right) {
-      parts.push({ inlineData: { mimeType: 'image/jpeg', data: clean(images.right) } });
-      parts.push({ text: "Image 3: Right Profile View" });
-  }
-
-  parts.push({ text: `Analyze these skin images for a skincare routine. User Profile: ${JSON.stringify(profile)}` });
+  console.log('[analyzeSkin] Sending images to server. Keys:', Object.keys(images).filter(k => !!(images as any)[k]));
 
   try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: {
-        parts: parts
-      },
-      config: {
-        systemInstruction: `You are Dr. Beauté Noire, a skincare coaching assistant for melanin-rich skin.
-        
-CRITICAL SAFETY RULES:
-1. NEVER diagnose diseases or medical conditions (e.g., eczema, psoriasis, cancer).
-2. NEVER mention lesions, medical risk, or use clinical diagnostic terms.
-3. Frame all observations as "appearance-based coaching signals" (e.g., "appears to have uneven tone" instead of "hyperpigmentation disorder").
-4. Prioritize ingredients safe for Fitzpatrick IV-VI (e.g., avoid high % hydroquinone, suggest Tyrosinase inhibitors like Kojic Acid/Alpha Arbutin).
-5. Always recommend SPF.
-
-Your task is to generate a personalized skincare routine JSON based on the user's photos and profile. Look for signs of uneven tone, texture, oiliness, or dryness in the provided images to customize the product recommendations.`,
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            morning: {
-              type: Type.ARRAY,
-              items: {
-                type: Type.OBJECT,
-                properties: {
-                  stepOrder: { type: Type.NUMBER },
-                  title: { type: Type.STRING },
-                  instructions: { type: Type.STRING },
-                  timing: { type: Type.STRING },
-                  productCategory: { type: Type.STRING },
-                  recommendedProduct: {
-                    type: Type.OBJECT,
-                    properties: {
-                      name: { type: Type.STRING },
-                      brand: { type: Type.STRING },
-                      keyIngredients: { type: Type.STRING },
-                      whyThisProduct: { type: Type.STRING }
-                    }
-                  }
-                },
-                required: ["stepOrder", "title", "instructions", "timing", "productCategory"]
-              }
-            },
-            evening: {
-              type: Type.ARRAY,
-              items: {
-                type: Type.OBJECT,
-                properties: {
-                  stepOrder: { type: Type.NUMBER },
-                  title: { type: Type.STRING },
-                  instructions: { type: Type.STRING },
-                  timing: { type: Type.STRING },
-                  productCategory: { type: Type.STRING },
-                  recommendedProduct: {
-                    type: Type.OBJECT,
-                    properties: {
-                      name: { type: Type.STRING },
-                      brand: { type: Type.STRING },
-                      keyIngredients: { type: Type.STRING },
-                      whyThisProduct: { type: Type.STRING }
-                    }
-                  }
-                },
-                required: ["stepOrder", "title", "instructions", "timing", "productCategory"]
-              }
-            },
-            weekly: {
-              type: Type.ARRAY,
-              items: {
-                type: Type.OBJECT,
-                properties: {
-                  title: { type: Type.STRING },
-                  frequency: { type: Type.STRING },
-                  instructions: { type: Type.STRING }
-                },
-                required: ["title", "frequency", "instructions"]
-              }
-            },
-            meta: {
-              type: Type.OBJECT,
-              properties: {
-                focus: { type: Type.STRING },
-                safetyNotes: {
-                  type: Type.ARRAY,
-                  items: { type: Type.STRING }
-                }
-              },
-              required: ["focus", "safetyNotes"]
-            }
-          },
-          required: ["morning", "evening", "weekly", "meta"]
-        }
-      }
+    const response = await fetch('/api/analyzeSkin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        imageBase64: images,
+        profile,
+      }),
     });
-    
-    if (response.text) return JSON.parse(response.text) as TodayPlan;
-    throw new Error("No response");
+
+    console.log('[analyzeSkin] Server response status:', response.status);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error('[analyzeSkin] Server error:', errorData);
+      throw new Error(errorData.message || 'Server error');
+    }
+
+    const data = await response.json();
+    if (data.ok && data.plan) {
+      return data.plan as TodayPlan;
+    }
+    throw new Error('Invalid response from server');
   } catch (error) {
     console.error("AI Analysis Failed, falling back to rules:", error);
     return generateRulesBasedPlan(profile); // Fallback

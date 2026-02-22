@@ -94,7 +94,7 @@ function App() {
   return (
     <>
       {view === 'landing' && (
-          <LandingPage onStart={handleStart} lang={lang} />
+          <LandingPage onStart={handleStart} onLogin={() => {}} onSignup={() => {}} lang={lang} />
       )}
 
       {view === 'onboarding' && (
